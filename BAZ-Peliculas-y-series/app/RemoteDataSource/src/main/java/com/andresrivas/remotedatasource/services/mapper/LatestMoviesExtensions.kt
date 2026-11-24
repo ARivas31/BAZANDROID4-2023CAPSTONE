@@ -1,6 +1,6 @@
 package com.andresrivas.remotedatasource.services.mapper
 
-import com.andresrivas.bazpeliculasyseries.domain.model.LatestMoviesModel
+import com.andresrivas.common.model.LatestMoviesModel
 import com.andresrivas.bazpeliculasyseries.domain.model.MovieModel
 import com.andresrivas.remotedatasource.services.moviesapi.response.LatestMoviesResponse
 

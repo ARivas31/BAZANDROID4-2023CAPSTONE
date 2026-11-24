@@ -1,6 +1,6 @@
 package com.andresrivas.bazpeliculasyseries.data.repository
 
-import com.andresrivas.bazpeliculasyseries.domain.model.LatestMoviesModel
+import com.andresrivas.common.model.LatestMoviesModel
 import com.andresrivas.bazpeliculasyseries.domain.model.MovieModel
 import com.andresrivas.bazpeliculasyseries.domain.model.MoviesPagesModel
 import com.andresrivas.bazpeliculasyseries.injection.MoviesRepositoryRemote

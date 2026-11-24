@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.andresrivas.bazpeliculasyseries.databinding.ItemMovieBinding
-import com.andresrivas.bazpeliculasyseries.domain.model.LatestMoviesModel
+import com.andresrivas.common.model.LatestMoviesModel
 import com.andresrivas.bazpeliculasyseries.utilities.Constants
 import com.andresrivas.bazpeliculasyseries.utilities.fromUrl
 

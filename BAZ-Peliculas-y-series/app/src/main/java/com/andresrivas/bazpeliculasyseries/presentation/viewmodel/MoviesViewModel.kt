@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.andresrivas.bazpeliculasyseries.domain.model.LatestMoviesModel
+import com.andresrivas.common.model.LatestMoviesModel
 import com.andresrivas.bazpeliculasyseries.domain.model.MovieModel
 import com.andresrivas.bazpeliculasyseries.domain.model.MoviesPagesModel
 import com.andresrivas.bazpeliculasyseries.domain.usecases.FavoritesUseCase
@@ -33,14 +33,14 @@ class MoviesViewModel @Inject constructor(
 
     private val disposable = CompositeDisposable()
 
-    private val _latestMovies = SingleLiveEvent<ResultAPI<LatestMoviesModel>>()
-    val latestMovies: LiveData<ResultAPI<LatestMoviesModel>> get() = _latestMovies
+    val latestMovies: LiveData<ResultAPI<LatestMoviesModel>>
+        field = SingleLiveEvent<ResultAPI<LatestMoviesModel>>()
 
-    private val _movies = SingleLiveEvent<ResultAPI<MoviesPagesModel>>()
-    val movies: LiveData<ResultAPI<MoviesPagesModel>> get() = _movies
+    val movies: LiveData<ResultAPI<MoviesPagesModel>>
+        field = SingleLiveEvent<ResultAPI<MoviesPagesModel>>()
 
-    private val _videoMovie = SingleLiveEvent<ResultAPI<MoviesVideoModel>>()
-    val videoMovie: LiveData<ResultAPI<MoviesVideoModel>> get() = _videoMovie
+    val videoMovie: LiveData<ResultAPI<MoviesVideoModel>>
+        field = SingleLiveEvent<ResultAPI<MoviesVideoModel>>()
 
     private val _favorites = SingleLiveEvent<ResultAPI<List<MovieModel>>>()
     val favorites: LiveData<ResultAPI<List<MovieModel>>> = _favorites
@@ -54,30 +54,31 @@ class MoviesViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
                 .subscribe({
-                    _latestMovies.postValue(it)
-                }, { error ->
-                    Log.e("MoviesViewModel", "Error".plus(error))
+                    latestMovies.postValue(it)
+                }, {
+                    Log.e("MoviesViewModel", "Error".plus(it))
+                    latestMovies.postValue(ResultAPI.OnFailure(it))
                 }),
         )
     }
 
     fun getNowPlayingMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            getPlayingNowUseCase.execute().collect { _movies.postValue(it) }
+            getPlayingNowUseCase.execute().collect { movies.postValue(it) }
         }
     }
 
     fun getMovieVideo(idMovie: String) {
         viewModelScope.launch(Dispatchers.IO) {
             getMovieVideoUseCase.execute(GetMovieVideoUseCase.Params(idMovie)).collect {
-                _videoMovie.postValue(it)
+                videoMovie.postValue(it)
             }
         }
     }
 
     fun getTrendingMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            getTopRatedUseCase.execute().collect { _movies.postValue(it) }
+            getTopRatedUseCase.execute().collect { movies.postValue(it) }
         }
     }
 

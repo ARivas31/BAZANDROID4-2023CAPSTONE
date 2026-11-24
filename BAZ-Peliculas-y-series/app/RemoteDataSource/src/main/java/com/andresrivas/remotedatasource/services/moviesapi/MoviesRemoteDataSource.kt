@@ -1,6 +1,6 @@
 package com.andresrivas.remotedatasource.services.moviesapi
 
-import com.andresrivas.bazpeliculasyseries.domain.model.LatestMoviesModel
+import com.andresrivas.common.model.LatestMoviesModel
 import com.andresrivas.bazpeliculasyseries.domain.model.MoviesPagesModel
 import com.andresrivas.common.model.MoviesVideoModel
 import com.andresrivas.common.utilities.ResultAPI

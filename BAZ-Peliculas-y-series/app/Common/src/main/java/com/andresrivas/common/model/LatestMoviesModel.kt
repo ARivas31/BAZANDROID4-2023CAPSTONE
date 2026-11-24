@@ -1,4 +1,4 @@
-package com.andresrivas.bazpeliculasyseries.domain.model
+package com.andresrivas.common.model
 
 data class LatestMoviesModel(
     var adult: Boolean = false,

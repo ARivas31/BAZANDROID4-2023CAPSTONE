@@ -8,11 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.andresrivas.bazpeliculasyseries.R
 import com.andresrivas.bazpeliculasyseries.tools.AuthenticationManager.Builder.Companion.GOOGLE_SIGN_IN
 import com.andresrivas.bazpeliculasyseries.utilities.AccountModel
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 
 class AuthenticationManager(builder: Builder) {
 
@@ -28,7 +24,7 @@ class AuthenticationManager(builder: Builder) {
         ActivityResultContracts.StartActivityForResult(),
     ) { result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            /*val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             val account = task.getResult(ApiException::class.java)
             try {
                 account?.let {
@@ -44,7 +40,7 @@ class AuthenticationManager(builder: Builder) {
                 }
             } catch (e: Exception) {
                 failProcess?.invoke("")
-            }
+            }*/
         } else {
             failProcess?.invoke("Operation cancelled")
         }
@@ -95,9 +91,9 @@ class AuthenticationManager(builder: Builder) {
                     .requestEmail()
                     .build()
 
-                val googleClient = GoogleSignIn.getClient(context, googleConf)
-                googleClient.signOut()
-                googleSignInResult.launch(googleClient.signInIntent)
+                //val googleClient = GoogleSignIn.getClient(context, googleConf)
+                //googleClient.signOut()
+                //googleSignInResult.launch(googleClient.signInIntent)
             }
         }
     }
